@@ -1,3 +1,4 @@
+#!/bin/bash
 # bash-preexec.sh -- Bash support for ZSH-like 'preexec' and 'precmd' functions.
 # https://github.com/rcaloras/bash-preexec
 #
@@ -303,11 +304,18 @@ __bp_install() {
 
     # Install our hooks in PROMPT_COMMAND to allow our trap to know when we've
     # actually entered something.
-    PROMPT_COMMAND=$'__bp_precmd_invoke_cmd\n'
+
+    # Adjusting the following section to account for:
+    # https://github.com/direnv/direnv/issues/796 START
+    
+    PROMPT_COMMAND=''
     if [[ -n "$existing_prompt_command" ]]; then
-        PROMPT_COMMAND+=${existing_prompt_command}$'\n'
+        PROMPT_COMMAND+="${existing_prompt_command}"$'\n'
     fi;
+    PROMPT_COMMAND+=$'__bp_precmd_invoke_cmd\n'
     PROMPT_COMMAND+='__bp_interactive_mode'
+    
+    # https://github.com/direnv/direnv/issues/796 END
 
     # Add two functions to our arrays for convenience
     # of definition.
