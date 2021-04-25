@@ -1,5 +1,8 @@
 #!/bin/bash
 
+direnv_path="direnv"
+bash_preexec_path="bash-preexec.sh"
+
 #######################################
 # Records the path prior to direnv modifying it, so that it can be adjusted after the changes.
 # This allows the fixing of incorrect formatting on Windows.
@@ -70,6 +73,6 @@ precmd()
 }
 
 # Hooks direnv into the prompt command
-eval "$(direnv hook bash)"
+eval "$("${direnv_path}" hook bash)"
 # Hooks bash-preexec into prompt command
-source "bash-preexec.sh"
+source "${bash_preexec_path}"
