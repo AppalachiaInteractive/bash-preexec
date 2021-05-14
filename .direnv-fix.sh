@@ -19,6 +19,8 @@ recovery_path='/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/usr/bin'
 
 # Logging to diagnose issues.
 enable_debug_logging=0
+# Uncomment the below line to enable logging.
+# enable_debug_logging=1
 
 #######################################
 # End: User modifiable params
